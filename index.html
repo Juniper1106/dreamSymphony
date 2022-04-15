@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Symphony</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/images/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon/favicon-16x16.png"
+    />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="/js/jquery-3.6.0.js"></script>
+    <script src="/js/main.js"></script>
+  </head>
+  <body>
+    <!-- extra background-->
+    <div class="extra-background" id="extra-background"></div>
+
+    <!-- logo -->
+    <div class="logo" id="logo">
+      <img src="/images/logo.png" alt="This is the logo of the website" />
+    </div>
+
+    <!-- video -->
+    <video id="backVideo" loop src="/videos/cloudsea.mp4"></video>
+
+    <!-- page indicator -->
+    <div class="containerI hide" id="indicatorContainer">
+      <div class="indicatorGroup" id="indicatorGroup">
+        <div class="pageIndicator" style="left: 0px" id="indicator"></div>
+        <div class="pageIndicator" style="left: 34px" id="1"></div>
+        <div class="pageIndicator" style="left: 68px" id="2"></div>
+        <div class="pageIndicator" style="left: 102px" id="3"></div>
+        <div class="pageIndicator" style="left: 136px" id="4"></div>
+      </div>
+    </div>
+
+    <!-- home page -->
+    <div class="homeContent" id="page0">
+      <div>
+        <h1>
+          让你的梦境来到现实<br /><br />
+          <span class="subTitle">MAKE YOUR DREAM COME TRUE</span>
+        </h1>
+      </div>
+      <button class="homeBtn" id="homeBtn">开始体验</button>
+    </div>
+
+    <!-- question page -->
+    <div class="containerQ hide" id="page1-1">
+      <div class="question" id="question1-1">
+        <h2>为您首先想到的梦境起个名字吧</h2>
+        <div class="titleInputGroup">
+          <input
+            id="dreamTitle"
+            class="dreamTitle"
+            type="text"
+            placeholder="我的梦境"
+            maxlength="20"
+            oninput="getLenTitle()"
+            autocomplete="off"
+          />
+          <label for="dreamTitle" id="titleCount" class="titleCount"
+            >0/20</label
+          >
+          <div class="line"></div>
+        </div>
+      </div>
+      <div class="containerB" id="bottomBtn1-1">
+        <div class="bottomBtnContainer">
+          <button class="btn--small next" id="next1-1"></button>
+          <button class="btn--large back" id="backBtnInPage1">返回</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page1-2">
+      <div class="question" id="question1-2">
+        <h2>用一句话简要描述您的梦境...</h2>
+        <div class="descInputGroup">
+          <textarea
+            id="description"
+            class="description"
+            cols="65"
+            rows="4"
+            placeholder="我梦见..."
+            maxlength="100"
+            oninput="getLenDes()"
+          ></textarea>
+          <label
+            for="description"
+            id="descriptionCount"
+            class="descriptionCount"
+            >0/100</label
+          >
+        </div>
+      </div>
+      <div class="containerB" id="bottomBtn1-2">
+        <div class="bottomBtnContainer">
+          <button class="btn--large continue" id="continueBtnInPage1">
+            继续
+          </button>
+          <button class="btn--small prev" id="prev1-2"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page2-1">
+      <div class="optQuestion grid-2x5" id="question2-1">
+        <h2>该梦境对于您来说属于...</h2>
+        <div id="opt2-1-1" class="singleOpt group2-1">
+          <label id="label2-1-1" for="2-1-1"
+            >噩<span class="lastLetterNoSpacing">梦</span></label
+          >
+          <input id="2-1-1" name="group2-1" value="" type="radio" />
+        </div>
+        <div id="opt2-1-2" class="singleOpt group2-1">
+          <label id="label2-1-2" for="2-1-2"
+            >不好的<span class="lastLetterNoSpacing">梦</span></label
+          >
+          <input id="2-1-2" name="group2-1" value="" type="radio" />
+        </div>
+        <div id="opt2-1-3" class="singleOpt group2-1">
+          <label id="label2-1-3" for="2-1-3"
+            >中性<span class="lastLetterNoSpacing">梦</span></label
+          >
+          <input id="2-1-3" name="group2-1" value="" type="radio" />
+        </div>
+        <div id="opt2-1-4" class="singleOpt group2-1">
+          <label id="label2-1-4" for="2-1-4"
+            >好<span class="lastLetterNoSpacing">梦</span></label
+          >
+          <input id="2-1-4" name="group2-1" value="" type="radio" />
+        </div>
+        <div id="opt2-1-5" class="singleOpt group2-1">
+          <label id="label2-1-5" for="2-1-5"
+            >美<span class="lastLetterNoSpacing">梦</span></label
+          >
+          <input id="2-1-5" name="group2-1" value="" type="radio" />
+        </div>
+        <p class="promptTag hide" id="prompt2-1">
+          *请选择<span class="lastLetterNoSpacing">*</span>
+        </p>
+      </div>
+      <div class="containerB" id="bottomBtn2-1">
+        <div class="bottomBtnContainer">
+          <button class="btn--small next" id="next2-1"></button>
+          <button class="btn--large back" id="backBtnInPage2">返回</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page2-2">
+      <div class="optQuestion grid-2x5" id="question2-2">
+        <h2>您在梦中的视角是...</h2>
+        <div></div>
+        <div id="opt2-2-1" class="singleOpt group2-2">
+          <label id="label2-2-1" for="2-2-1"
+            >第一人<span class="lastLetterNoSpacing">称</span></label
+          >
+          <input id="2-2-1" name="group2-2" value="" type="radio" />
+        </div>
+        <div id="opt2-2-2" class="singleOpt group2-2">
+          <label id="label2-2-2" for="2-2-2"
+            >第三人<span class="lastLetterNoSpacing">称</span></label
+          >
+          <input id="2-2-2" name="group2-2" value="" type="radio" />
+        </div>
+        <div id="opt2-2-3" class="singleOpt group2-2">
+          <label id="label2-2-3" for="2-2-3"
+            >不固<span class="lastLetterNoSpacing">定</span></label
+          >
+          <input id="2-2-3" name="group2-2" value="" type="radio" />
+        </div>
+        <button class="forgetBtn" id="2-2">
+          不记得<span class="lastLetterNoSpacing">了</span>
+        </button>
+      </div>
+      <div class="containerB" id="bottomBtn2-2">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev2-2"></button>
+          <button class="btn--small next" id="next2-2"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page2-3">
+      <div class="question" id="question2-3">
+        <h2>该梦境的现实原型是...</h2>
+        <div class="descInputGroup">
+          <textarea
+            id="realityEvent"
+            class="description"
+            cols="65"
+            rows="4"
+            placeholder="最近在现实生活中..."
+          ></textarea>
+        </div>
+        <button class="skipBtn" id="2-3">
+          跳<span class="lastLetterNoSpacing">过</span>
+        </button>
+      </div>
+      <div class="containerB" id="bottomBtn2-3">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev2-3"></button>
+          <button class="btn--small next" id="next2-3"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page2-4">
+      <div class="optQuestion grid-2x2" id="question2-4">
+        <h2>您是否多次或反复梦见类似梦境？</h2>
+        <div id="opt2-4-1" class="singleOpt group2-4">
+          <label id="label2-4-1" for="2-4-1">是</label>
+          <input id="2-4-1" name="group2-4" value="" type="radio" />
+        </div>
+        <div id="opt2-4-2" class="singleOpt group2-4">
+          <label id="label2-4-2" for="2-4-2">否</label>
+          <input id="2-4-2" name="group2-4" value="" type="radio" />
+        </div>
+        <p class="promptTag hide" id="prompt2-4">
+          *请选择<span class="lastLetterNoSpacing">*</span>
+        </p>
+      </div>
+      <div class="containerB" id="bottomBtn2-4">
+        <div class="bottomBtnContainer">
+          <button class="btn--large continue" id="continueBtnInPage2">
+            继续
+          </button>
+          <button class="btn--small prev" id="prev2-4"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page3-1">
+      <div class="question" id="question3-1">
+        <h2>该梦境中的主要角色有...</h2>
+        <div class="descInputGroup">
+          <textarea
+            id="character"
+            class="description"
+            cols="65"
+            rows="4"
+            placeholder="例：张三、猎人、龙"
+            oninput="hidePrompt()"
+          ></textarea>
+        </div>
+        <p class="promptTag hide" id="prompt3-1">
+          *请填写<span class="lastLetterNoSpacing">*</span>
+        </p>
+      </div>
+      <div class="containerB" id="bottomBtn3-1">
+        <div class="bottomBtnContainer">
+          <button class="btn--small next" id="next3-1"></button>
+          <button class="btn--large back" id="backBtnInPage3">返回</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page3-2">
+      <div class="optQuestion grid-2x3" id="question3-2">
+        <h2>上述角色之间的关系是...</h2>
+        <div></div>
+        <h2>上述角色的主要行为是...</h2>
+        <div class="descInputGroup double">
+          <textarea
+            id="relation"
+            class="description"
+            cols="30"
+            rows="4"
+            placeholder="例：A与B是恋人/同学/敌对关系"
+            oninput="hidePrompt()"
+          ></textarea>
+        </div>
+        <div></div>
+        <div class="descInputGroup double">
+          <textarea
+            id="action"
+            class="description"
+            cols="32"
+            rows="4"
+            placeholder="例：吃饭、运动"
+            oninput="hidePrompt()"
+          ></textarea>
+        </div>
+        <p class="promptTag hide" id="prompt3-2">
+          *请填写<span class="lastLetterNoSpacing">*</span>
+        </p>
+      </div>
+      <div class="containerB" id="bottomBtn3-2">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev3-2"></button>
+          <button class="btn--small next" id="next3-2"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page3-3">
+      <div class="question" id="question3-3">
+        <h2>梦中的主要场景有...</h2>
+        <div class="descInputGroup">
+          <textarea
+            id="scene"
+            class="description"
+            cols="65"
+            rows="4"
+            placeholder="例：森林、学校、太空"
+            oninput="hidePrompt()"
+          ></textarea>
+        </div>
+        <p class="promptTag hide" id="prompt3-3">
+          *请填写<span class="lastLetterNoSpacing">*</span>
+        </p>
+      </div>
+      <div class="containerB" id="bottomBtn3-3">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev3-3"></button>
+          <button class="btn--small next" id="next3-3"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page3-4">
+      <div class="optQuestion grid-2x5" id="question3-4">
+        <h2>梦中的天气是...</h2>
+        <div id="opt3-4-1" class="multiOpt group3-4">
+          <label id="label3-4-1" for="3-4-1"
+            >晴<span class="lastLetterNoSpacing">天</span></label
+          >
+          <input id="3-4-1" name="group3-4" value="" type="checkbox" />
+        </div>
+        <div id="opt3-4-2" class="multiOpt group3-4">
+          <label id="label3-4-2" for="3-4-2"
+            >阴<span class="lastLetterNoSpacing">天</span></label
+          >
+          <input id="3-4-2" name="group3-4" value="" type="checkbox" />
+        </div>
+        <div id="opt3-4-3" class="multiOpt group3-4">
+          <label id="label3-4-3" for="3-4-3"
+            >雨<span class="lastLetterNoSpacing">天</span></label
+          >
+          <input id="3-4-3" name="group3-4" value="" type="checkbox" />
+        </div>
+        <div id="opt3-4-4" class="multiOpt group3-4">
+          <label id="label3-4-4" for="3-4-4"
+            >雾/<span class="lastLetterNoSpacing">霾</span></label
+          >
+          <input id="3-4-4" name="group3-4" value="" type="checkbox" />
+        </div>
+        <div id="opt3-4-5" class="multiOpt group3-4">
+          <label id="label3-4-5" for="3-4-5"
+            >雷<span class="lastLetterNoSpacing">电</span></label
+          >
+          <input id="3-4-5" name="group3-4" value="" type="checkbox" />
+        </div>
+        <button class="forgetBtn" id="3-4">
+          不记得<span class="lastLetterNoSpacing">了</span>
+        </button>
+      </div>
+      <div class="containerB" id="bottomBtn3-4">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev3-4"></button>
+          <button class="btn--small next" id="next3-4"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page3-5">
+      <div class="optQuestion grid-2x5" id="question3-5">
+        <h2>梦中的时间是...</h2>
+        <div id="opt3-5-1" class="multiOpt group3-5">
+          <label id="label3-5-1" for="3-5-1"
+            >清<span class="lastLetterNoSpacing">晨</span></label
+          >
+          <input id="3-5-1" name="group3-5" value="" type="checkbox" />
+        </div>
+        <div id="opt3-5-2" class="multiOpt group3-5">
+          <label id="label3-5-2" for="3-5-2"
+            >白<span class="lastLetterNoSpacing">天</span></label
+          >
+          <input id="3-5-2" name="group3-5" value="" type="checkbox" />
+        </div>
+        <div id="opt3-5-3" class="multiOpt group3-5">
+          <label id="label3-5-3" for="3-5-3"
+            >黄<span class="lastLetterNoSpacing">昏</span></label
+          >
+          <input id="3-5-3" name="group3-5" value="" type="checkbox" />
+        </div>
+        <div id="opt3-5-4" class="multiOpt group3-5">
+          <label id="label3-5-4" for="3-5-4"
+            >夜<span class="lastLetterNoSpacing">晚</span></label
+          >
+          <input id="3-5-4" name="group3-5" value="" type="checkbox" />
+        </div>
+        <div id="opt3-5-5" class="multiOpt group3-5">
+          <label id="label3-5-5" for="3-5-5"
+            >深夜/凌<span class="lastLetterNoSpacing">晨</span></label
+          >
+          <input id="3-5-5" name="group3-5" value="" type="checkbox" />
+        </div>
+        <button class="forgetBtn" id="3-5">
+          不记得<span class="lastLetterNoSpacing">了</span>
+        </button>
+      </div>
+      <div class="containerB" id="bottomBtn3-5">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev3-5"></button>
+          <button class="btn--small next" id="next3-5"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page3-6">
+      <div class="optQuestion grid-2x2" id="question3-6">
+        <h2>梦中是否有超自然/超现实事物？</h2>
+        <div id="opt3-6-1" class="singleOpt group3-6">
+          <label id="label3-6-1" for="3-6-1">是</label>
+          <input id="3-6-1" name="group3-6" value="" type="radio" />
+        </div>
+        <div id="opt3-6-2" class="singleOpt group3-6">
+          <label id="label3-6-2" for="3-6-2">否</label>
+          <input id="3-6-2" name="group3-6" value="" type="radio" />
+        </div>
+        <p class="promptTag hide" id="prompt3-6">
+          *请选择<span class="lastLetterNoSpacing">*</span>
+        </p>
+      </div>
+      <div class="containerB" id="bottomBtn3-6">
+        <div class="bottomBtnContainer">
+          <button class="btn--large continue" id="continueBtnInPage3">
+            继续
+          </button>
+          <button class="btn--small prev" id="prev3-6"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page4-1">
+      <div class="optQuestion grid-4x6" id="question4-1">
+        <h2>梦境中的正面情绪主要有...</h2>
+        <div id="opt4-1-1" class="multiTag group4-1">
+          <label id="label4-1-1" for="4-1-1"
+            >爱<span class="lastLetterNoSpacing">情</span></label
+          >
+          <input id="4-1-1" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-2" class="multiTag group4-1">
+          <label id="label4-1-2" for="4-1-2"
+            >保护<span class="lastLetterNoSpacing">欲</span></label
+          >
+          <input id="4-1-2" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-3" class="multiTag group4-1">
+          <label id="label4-1-3" for="4-1-3"
+            >崇<span class="lastLetterNoSpacing">敬</span></label
+          >
+          <input id="4-1-3" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-4" class="multiTag group4-1">
+          <label id="label4-1-4" for="4-1-4"
+            >感<span class="lastLetterNoSpacing">恩</span></label
+          >
+          <input id="4-1-4" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-5" class="multiTag group4-1">
+          <label id="label4-1-5" for="4-1-5"
+            >关<span class="lastLetterNoSpacing">心</span></label
+          >
+          <input id="4-1-5" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-6" class="multiTag group4-1">
+          <label id="label4-1-6" for="4-1-6"
+            >好<span class="lastLetterNoSpacing">奇</span></label
+          >
+          <input id="4-1-6" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-7" class="multiTag group4-1">
+          <label id="label4-1-7" for="4-1-7"
+            >惊<span class="lastLetterNoSpacing">喜</span></label
+          >
+          <input id="4-1-7" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-8" class="multiTag group4-1">
+          <label id="label4-1-8" for="4-1-8"
+            >开<span class="lastLetterNoSpacing">心</span></label
+          >
+          <input id="4-1-8" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-9" class="multiTag group4-1">
+          <label id="label4-1-9" for="4-1-9"
+            >乐<span class="lastLetterNoSpacing">观</span></label
+          >
+          <input id="4-1-9" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-10" class="multiTag group4-1">
+          <label id="label4-1-10" for="4-1-10"
+            >期<span class="lastLetterNoSpacing">待</span></label
+          >
+          <input id="4-1-10" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-11" class="multiTag group4-1">
+          <label id="label4-1-11" for="4-1-11"
+            >惬<span class="lastLetterNoSpacing">意</span></label
+          >
+          <input id="4-1-11" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-12" class="multiTag group4-1">
+          <label id="label4-1-12" for="4-1-12"
+            >热<span class="lastLetterNoSpacing">情</span></label
+          >
+          <input id="4-1-12" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-13" class="multiTag group4-1">
+          <label id="label4-1-13" for="4-1-13"
+            >喜<span class="lastLetterNoSpacing">爱</span></label
+          >
+          <input id="4-1-13" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-14" class="multiTag group4-1">
+          <label id="label4-1-14" for="4-1-14"
+            >信<span class="lastLetterNoSpacing">任</span></label
+          >
+          <input id="4-1-14" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-15" class="multiTag group4-1">
+          <label id="label4-1-15" for="4-1-15"
+            >友<span class="lastLetterNoSpacing">爱</span></label
+          >
+          <input id="4-1-15" name="group4-1" value="" type="checkbox" />
+        </div>
+        <div id="opt4-1-16" class="multiTag group4-1">
+          <label id="label4-1-16" for="4-1-16"
+            >自<span class="lastLetterNoSpacing">信</span></label
+          >
+          <input id="4-1-16" name="group4-1" value="" type="checkbox" />
+        </div>
+      </div>
+      <div class="containerB" id="bottomBtn4-1">
+        <div class="bottomBtnContainer">
+          <button class="btn--small next" id="next4-1"></button>
+          <button class="btn--large back" id="backBtnInPage4">返回</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page4-2">
+      <div class="optQuestion grid-4x6" id="question4-2">
+        <h2>梦境中的负面情绪主要有...</h2>
+        <div id="opt4-2-1" class="multiTag group4-2">
+          <label id="label4-2-1" for="4-2-1"
+            >懊<span class="lastLetterNoSpacing">悔</span></label
+          >
+          <input id="4-2-1" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-2" class="multiTag group4-2">
+          <label id="label4-2-2" for="4-2-2"
+            >悲<span class="lastLetterNoSpacing">伤</span></label
+          >
+          <input id="4-2-2" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-3" class="multiTag group4-2">
+          <label id="label4-2-3" for="4-2-3"
+            >鄙<span class="lastLetterNoSpacing">夷</span></label
+          >
+          <input id="4-2-3" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-4" class="multiTag group4-2">
+          <label id="label4-2-4" for="4-2-4"
+            >不<span class="lastLetterNoSpacing">满</span></label
+          >
+          <input id="4-2-4" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-5" class="multiTag group4-2">
+          <label id="label4-2-5" for="4-2-5"
+            >烦<span class="lastLetterNoSpacing">躁</span></label
+          >
+          <input id="4-2-5" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-6" class="multiTag group4-2">
+          <label id="label4-2-6" for="4-2-6"
+            >悔<span class="lastLetterNoSpacing">恨</span></label
+          >
+          <input id="4-2-6" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-7" class="multiTag group4-2">
+          <label id="label4-2-7" for="4-2-7"
+            >嫉<span class="lastLetterNoSpacing">妒</span></label
+          >
+          <input id="4-2-7" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-8" class="multiTag group4-2">
+          <label id="label4-2-8" for="4-2-8"
+            >焦<span class="lastLetterNoSpacing">虑</span></label
+          >
+          <input id="4-2-8" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-9" class="multiTag group4-2">
+          <label id="label4-2-9" for="4-2-9"
+            >恐<span class="lastLetterNoSpacing">惧</span></label
+          >
+          <input id="4-2-9" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-10" class="multiTag group4-2">
+          <label id="label4-2-10" for="4-2-10"
+            >伤<span class="lastLetterNoSpacing">感</span></label
+          >
+          <input id="4-2-10" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-11" class="multiTag group4-2">
+          <label id="label4-2-11" for="4-2-11"
+            >生<span class="lastLetterNoSpacing">气</span></label
+          >
+          <input id="4-2-11" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-12" class="multiTag group4-2">
+          <label id="label4-2-12" for="4-2-12"
+            >失<span class="lastLetterNoSpacing">落</span></label
+          >
+          <input id="4-2-12" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-13" class="multiTag group4-2">
+          <label id="label4-2-13" for="4-2-13"
+            >泄<span class="lastLetterNoSpacing">气</span></label
+          >
+          <input id="4-2-13" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-14" class="multiTag group4-2">
+          <label id="label4-2-14" for="4-2-14"
+            >羞<span class="lastLetterNoSpacing">耻</span></label
+          >
+          <input id="4-2-14" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-15" class="multiTag group4-2">
+          <label id="label4-2-15" for="4-2-15"
+            >厌<span class="lastLetterNoSpacing">恶</span></label
+          >
+          <input id="4-2-15" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-16" class="multiTag group4-2">
+          <label id="label4-2-16" for="4-2-16"
+            >忧<span class="lastLetterNoSpacing">虑</span></label
+          >
+          <input id="4-2-16" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-17" class="multiTag group4-2">
+          <label id="label4-2-17" for="4-2-17"
+            >憎<span class="lastLetterNoSpacing">恨</span></label
+          >
+          <input id="4-2-17" name="group4-2" value="" type="checkbox" />
+        </div>
+        <div id="opt4-2-18" class="multiTag group4-2">
+          <label id="label4-2-18" for="4-2-18"
+            >罪恶<span class="lastLetterNoSpacing">感</span></label
+          >
+          <input id="4-2-18" name="group4-2" value="" type="checkbox" />
+        </div>
+      </div>
+      <div class="containerB" id="bottomBtn4-2">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev4-2"></button>
+          <button class="btn--small next" id="next4-2"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page4-3">
+      <div class="optQuestion grid-4x6" id="question4-3">
+        <h2>梦境中的中性情绪主要有...</h2>
+        <div id="opt4-3-1" class="multiTag group4-3">
+          <label id="label4-3-1" for="4-3-1"
+            >不<span class="lastLetterNoSpacing">解</span></label
+          >
+          <input id="4-3-1" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-2" class="multiTag group4-3">
+          <label id="label4-3-2" for="4-3-2"
+            >怅然若<span class="lastLetterNoSpacing">失</span></label
+          >
+          <input id="4-3-2" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-3" class="multiTag group4-3">
+          <label id="label4-3-3" for="4-3-3"
+            >尴<span class="lastLetterNoSpacing">尬</span></label
+          >
+          <input id="4-3-3" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-4" class="multiTag group4-3">
+          <label id="label4-3-4" for="4-3-4"
+            >忽<span class="lastLetterNoSpacing">视</span></label
+          >
+          <input id="4-3-4" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-5" class="multiTag group4-3">
+          <label id="label4-3-5" for="4-3-5"
+            >怀<span class="lastLetterNoSpacing">旧</span></label
+          >
+          <input id="4-3-5" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-6" class="multiTag group4-3">
+          <label id="label4-3-6" for="4-3-6"
+            >坚<span class="lastLetterNoSpacing">决</span></label
+          >
+          <input id="4-3-6" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-7" class="multiTag group4-3">
+          <label id="label4-3-7" for="4-3-7"
+            >警<span class="lastLetterNoSpacing">惕</span></label
+          >
+          <input id="4-3-7" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-8" class="multiTag group4-3">
+          <label id="label4-3-8" for="4-3-8"
+            >冷<span class="lastLetterNoSpacing">静</span></label
+          >
+          <input id="4-3-8" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-9" class="multiTag group4-3">
+          <label id="label4-3-9" for="4-3-9"
+            >冷<span class="lastLetterNoSpacing">漠</span></label
+          >
+          <input id="4-3-9" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-10" class="multiTag group4-3">
+          <label id="label4-3-10" for="4-3-10"
+            >平<span class="lastLetterNoSpacing">静</span></label
+          >
+          <input id="4-3-10" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-11" class="multiTag group4-3">
+          <label id="label4-3-11" for="4-3-11"
+            >屈<span class="lastLetterNoSpacing">服</span></label
+          >
+          <input id="4-3-11" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-12" class="multiTag group4-3">
+          <label id="label4-3-12" for="4-3-12"
+            >无<span class="lastLetterNoSpacing">聊</span></label
+          >
+          <input id="4-3-12" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-13" class="multiTag group4-3">
+          <label id="label4-3-13" for="4-3-13"
+            >心<span class="lastLetterNoSpacing">酸</span></label
+          >
+          <input id="4-3-13" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-14" class="multiTag group4-3">
+          <label id="label4-3-14" for="4-3-14"
+            >疑<span class="lastLetterNoSpacing">惑</span></label
+          >
+          <input id="4-3-14" name="multi group4-3" value="" type="checkbox" />
+        </div>
+        <div id="opt4-3-15" class="multiTag group4-3">
+          <label id="label4-3-15" for="4-3-15"
+            >专<span class="lastLetterNoSpacing">注</span></label
+          >
+          <input id="4-3-15" name="multi group4-3" value="" type="checkbox" />
+        </div>
+      </div>
+      <div class="containerB" id="bottomBtn4-3">
+        <div class="bottomBtnContainer">
+          <button class="btn--small prev" id="prev4-3"></button>
+          <button class="btn--small next" id="next4-3"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page4-4">
+      <div class="question" id="question4-4">
+        <h2>其他需补充的主要情绪...</h2>
+        <div class="descInputGroup">
+          <textarea
+            id="emotion"
+            class="description"
+            cols="65"
+            rows="4"
+            placeholder="请输入上述选项中未出现但在您的梦中作为主要情绪出现的情绪"
+          ></textarea>
+        </div>
+        <button class="skipBtn" id="4-4">
+          跳<span class="lastLetterNoSpacing">过</span>
+        </button>
+      </div>
+      <div class="containerB" id="bottomBtn4-4">
+        <div class="bottomBtnContainer">
+          <button class="btn--large continue" id="continueBtnInPage4">
+            继续
+          </button>
+          <button class="btn--small prev" id="prev4-4"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="page5-1">
+      <div class="question" id="question5-1">
+        <h2>您是否有对该梦境内容的补充描述？</h2>
+        <div class="descInputGroup">
+          <textarea
+            id="supplement"
+            class="description"
+            cols="65"
+            rows="4"
+            placeholder="我还想起来..."
+          ></textarea>
+        </div>
+        <button class="skipBtn" id="5-1">
+          跳<span class="lastLetterNoSpacing">过</span>
+        </button>
+      </div>
+      <div class="containerB" id="bottomBtn5-1">
+        <div class="bottomBtnContainer">
+          <button class="btn--small next" id="next5-1"></button>
+          <button class="btn--large back" id="backBtnInPage5">返回</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="containerQ hide" id="result">
+      <div class="optQuestion grid-result" id="resultPage">
+        <div class="frame">
+          <img
+            class="genImg"
+            src="/images/180.png"
+            alt="This is an image generated from your dream contents"
+          />
+        </div>
+        <h2>幸福的港湾</h2>
+        <textarea readonly id="resultTxt" class="resultTxt">
+    以前住过的地方
+    有一大片树林
+    还有老房子
+    在里面很开心的生活
+    梦里妈妈在忙活他的事情
+    我在静静的看着
+    很幸福的样子
+    梦里妈妈在忙活他的事情
+    我在静静的看着
+    很幸福的样子
+            </textarea
+        >
+      </div>
+      <div class="containerB containerB--result" id="bottomBtnResult">
+        <div class="audioContainer">
+          <audio controls src="/music/Goldberg-Variationen.mp3"></audio>
+        </div>
+        <div class="bottomBtnContainer">
+          <button class="btn--large complete" id="complete">完成</button>
+          <button class="btn--small prev" id="prevInResultPage"></button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
