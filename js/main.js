@@ -1,3 +1,4 @@
+var pageFlag;
 $(document).ready(function () {
   // ---------------global function----------------
   // ···············count text··············
@@ -69,7 +70,7 @@ $(document).ready(function () {
       $("#backVideo")[0].pause();
     }
   );
-  var pageFlag = 0;
+  pageFlag = 0;
   // to page1-1
   $("#homeBtn").click(function () {
     $("#backVideo").css("display", "none");
